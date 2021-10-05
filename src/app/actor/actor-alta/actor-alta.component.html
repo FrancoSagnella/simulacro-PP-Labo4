@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <form [formGroup]="formGroup" (ngSubmit)="enviar()">
+        <div class="row">
+          <div class="col-md-12 mb-5">
+            <h2>Alta de Actor</h2>
+          </div>
+        </div>
+        <div class="row formulario">
+          <div class="col-md-6 mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" formControlName="nombre" placeholder="Ingrese nombre">
+            <small *ngIf="formGroup.controls.nombre.errors?.required  && formGroup.controls.nombre.touched" class="invalid">El nombre es requerido</small>
+            <small *ngIf="formGroup.controls.nombre.errors?.validadorDeEspacios" class="invalid">El nombre no debe tener espacios</small>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="apellido" class="form-label">Apellido</label>
+            <input type="text" class="form-control" formControlName="apellido" placeholder="Ingrese apellido">
+            <small *ngIf="formGroup.controls.apellido.errors?.required  && formGroup.controls.apellido.touched" class="invalid">El apellido es requerido</small>
+            <small *ngIf="formGroup.controls.apellido.errors?.validadorDeEspacios" class="invalid">El apellido no debe tener espacios</small>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="dni" class="form-label">Pais</label>
+            <input type="tex" class="form-control" formControlName="pais" placeholder="Ingrese edad">
+            <small *ngIf="formGroup.controls.pais.errors?.required  && formGroup.controls.pais.touched" class="invalid">El pais es requerido</small>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="sexo" class="form-label">Sexo</label>
+            <select class="form-control" formControlName="sexo">
+              <option value="">Seleccione uno</option>
+              <option value="F">Femenino</option>
+              <option value="M">Masculino</option>
+            </select>
+            <small *ngIf="formGroup.get('sexo')?.errors && formGroup.controls.sexo.touched" class="invalid">El sexo es requerido</small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 d-grid gap-2">
+            <button type="submit" class="btn btn-primary btn-block" [disabled]="formGroup.invalid">
+              Aceptar
+            </button>
+            <button class="btn btn-info btn-block" (click)="volver()">Volver</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col">
+      <app-tabla-paises (elegirPais)="paisElegido($event)"></app-tabla-paises>
+    </div>
+  </div>
+
+  </div>

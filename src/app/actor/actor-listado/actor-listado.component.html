@@ -1,0 +1,33 @@
+<h1>Tabla de Actores</h1>
+<table style="width:100%" class="table">
+    <tr>
+        <td>
+            Nombre
+        </td>
+        <td>
+            Apellido
+        </td>
+        <td>
+          Pais
+      </td>
+      <td>
+        Acciones
+    </td>
+    </tr>
+    <tr *ngFor="let item of this.actores">
+        <td>
+            {{item.nombre}}
+        </td>
+        <td>
+          {{item.apellido}}
+      </td>
+      <td>
+        {{item.pais}}
+    </td>
+    <td>
+      <button (click)="onElegirActor(item, 'peliculas')">Mostrar pliculas</button>
+      <button (click)="onElegirActor(item, 'pais')">Mostrar pais</button>
+      <button (click)="onElegirActor(item, 'detalles')">Mostrar detalles</button>
+  </td>
+    </tr>
+</table>

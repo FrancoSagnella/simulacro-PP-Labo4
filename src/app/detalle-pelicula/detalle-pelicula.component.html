@@ -1,0 +1,27 @@
+<div *ngIf="peliculaRecibida" class="card mb-4 box-shadow">
+    <div class="card-body" style="text-align: center;">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <p>Nombre: {{peliculaRecibida.nombre}}</p>
+            <p>tipo: {{peliculaRecibida.tipo}}</p>
+            <p>Publico: {{peliculaRecibida.cantPublico}}</p>
+            <p>Fecha de estreno: {{peliculaRecibida.fechaEstreno}}</p>
+            <img [src]="peliculaRecibida.foto" alt="" height="90px" width="90px">
+              <br>
+              <br>
+          </div>
+          <div class="col">
+            <h1>Actores</h1>
+            <div *ngFor="let item of actores">
+              <p>Nombre: {{item.nombre}}</p>
+              <p>apellido: {{item.tipo}}</p>
+              <p>pais: {{item.cantPublico}}</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <button class="btn btn-secondary" (click)="limpiarDetalle()">Limpiar</button>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+<div *ngIf="actorRecibido" class="card mb-4 box-shadow">
+  <div class="card-body" style="text-align: center;">
+    <p>Nombre: {{actorRecibido.nombre}}</p>
+    <p>apellido: {{actorRecibido.apellido}}</p>
+    <p>sexo: {{actorRecibido.sexo}}</p>
+    <p>Pais: {{actorRecibido.pais}}</p>
+      <br>
+      <br>
+    <button class="btn btn-secondary" (click)="limpiarDetalle()">Limpiar</button>
+  </div>
+</div>
+

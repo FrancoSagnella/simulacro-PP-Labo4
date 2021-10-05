@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <form [formGroup]="formGroup" (ngSubmit)="enviar()">
+        <div class="row">
+          <div class="col-md-12 mb-5">
+            <h2>Alta de pelicula</h2>
+          </div>
+        </div>
+        <div class="row formulario">
+          <div class="col-md-6 mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" formControlName="nombre" placeholder="Ingrese nombre">
+            <small *ngIf="formGroup.controls.nombre.errors?.required  && formGroup.controls.nombre.touched" class="invalid">El nombre es requerido</small>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="apellido" class="form-label">Tipo</label>
+            <input type="text" class="form-control" formControlName="tipo" placeholder="Ingrese tipo de pelicula">
+            <small *ngIf="formGroup.controls.tipo.errors?.required  && formGroup.controls.tipo.touched" class="invalid">El tipo es requerido</small>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="dni" class="form-label">Fecha de Estreno</label>
+            <input type="text" class="form-control" formControlName="fechaEstreno" placeholder="Ingrese fecha de Estreno">
+            <small *ngIf="formGroup.controls.fechaEstreno.errors?.required  && formGroup.controls.fechaEstreno.touched" class="invalid">La fecha es requerida</small>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="dni" class="form-label">Cantidad de Publico</label>
+            <input type="number" class="form-control" formControlName="cantPublico" placeholder="Ingrese cantidad de publico">
+            <small *ngIf="formGroup.controls.cantPublico.errors?.required  && formGroup.controls.cantPublico.touched" class="invalid">El publico es requerido</small>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="dni" class="form-label">Foto</label>
+            <input type="file" class="form-control" formControlName="foto" placeholder="Seleccione Foto" (change)="onSelecFoto($event)">
+            <small *ngIf="formGroup.controls.foto.errors?.required  && formGroup.controls.foto.touched" class="invalid">La foto es requerida</small>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="dni" class="form-label">Actor</label>
+            <input type="text" class="form-control" formControlName="actor" placeholder="Ingrese Actor">
+            <small *ngIf="formGroup.controls.actor.errors?.required  && formGroup.controls.actor.touched" class="invalid">El actor es requerido</small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 d-grid gap-2">
+            <button type="submit" class="btn btn-primary btn-block" [disabled]="formGroup.invalid">
+              Aceptar
+            </button>
+            <button class="btn btn-info btn-block" (click)="volver()">Volver</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col">
+      <app-tabla-actor (elegirActor)="actorElegido($event)"></app-tabla-actor>
+    </div>
+  </div>
+
+  </div>

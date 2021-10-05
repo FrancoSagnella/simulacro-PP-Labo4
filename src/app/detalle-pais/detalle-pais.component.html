@@ -1,0 +1,12 @@
+<div *ngIf="actorRecibido" class="card mb-4 box-shadow">
+  <div  style="text-align: center;" *ngFor="let item of listaPaises">
+    <div *ngIf="item.name.common == actorRecibido.pais">
+      <p>Nombre: {{item.name.common}}</p>
+      <img [src]="item.flags[0]" width="90px" height="90px" alt="">
+    </div>
+  </div>
+  <br>
+  <br>
+  <button class="btn btn-secondary" (click)="limpiarPais()">Limpiar</button>
+</div>
+
