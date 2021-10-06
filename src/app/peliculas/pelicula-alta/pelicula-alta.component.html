@@ -35,7 +35,7 @@
           </div>
           <div class="col-md-6 mb-3">
             <label for="dni" class="form-label">Actor</label>
-            <input type="text" class="form-control" formControlName="actor" placeholder="Ingrese Actor">
+            <input readonly type="text" class="form-control" formControlName="actor" placeholder="Ingrese Actor">
             <small *ngIf="formGroup.controls.actor.errors?.required  && formGroup.controls.actor.touched" class="invalid">El actor es requerido</small>
           </div>
         </div>

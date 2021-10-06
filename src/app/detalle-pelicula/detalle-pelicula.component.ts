@@ -15,10 +15,17 @@ export class DetallePeliculaComponent implements OnChanges {
   constructor(private afs:AngularFirestore) { }
 
   ngOnChanges(): void {
+    console.info('actor', this.peliculaRecibida);
+    if(!this.peliculaRecibida.actor){
+      this.peliculaRecibida.actor = '';
+    }
     this.afs.collection('actores', ref => ref.where('id', '==', this.peliculaRecibida.actor)).snapshotChanges().subscribe(snapshot => {
       this.actores = [];
+      console.info('actores que trajo', snapshot);
       snapshot.forEach((peliculaData:any)=>{
         let data = peliculaData.payload.doc.data();
+      console.info('DATA', data);
+
         this.actores.push({ nombre:data.nombre, apellido:data.apellido, pais:data.pais });
       });
     });

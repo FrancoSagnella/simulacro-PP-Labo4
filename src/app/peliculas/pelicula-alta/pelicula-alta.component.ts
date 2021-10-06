@@ -17,7 +17,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 })
 export class PeliculaAltaComponent implements OnInit {
 
-  pelicula:Pelicula = {id:0,nombre:'',fechaEstreno:'',cantPublico:0,tipo:'',foto:''};
+  pelicula:Pelicula = {id:'',nombre:'',fechaEstreno:'',cantPublico:0,tipo:'',foto:''};
   formGroup!:FormGroup;
   foto:any;
   actorSeleccionado!:Actor;
@@ -53,24 +53,15 @@ export class PeliculaAltaComponent implements OnInit {
     const fileRef = this.firestorage.ref(pathRef);
     const task = this.firestorage.upload(pathRef, this.foto);
 
-    task.snapshotChanges().subscribe(() => {
+    task.snapshotChanges().toPromise().then(() => {
       fileRef.getDownloadURL().toPromise().then(response => {
 
-          this.pelicula.foto = response;
+        this.pelicula.foto = response;
+        this.pelicula.id = this.afs.createId();
 
-          this.afs.collection<Actor>('peliculas', ref => ref.orderBy('id', 'desc').limit(1)).snapshotChanges().subscribe(snapshot => {
-
-            let ultimoId:number;
-            ultimoId = snapshot[0].payload.doc.data().id;
-            this.pelicula.id = ultimoId;
-
-          });
-
-          setTimeout(()=>{
-            this.pelicula.id = this.pelicula.id+1;
-            this.firestore.crear('peliculas', this.pelicula);
-            this.router.navigate(['/busqueda']);
-          }, 1200);
+        this.firestore.actualizar('peliculas', this.pelicula.id, this.pelicula).then(()=>{
+          this.router.navigate(['/busqueda']);
+        });
       });
     });
   }

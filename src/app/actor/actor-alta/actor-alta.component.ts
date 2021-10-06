@@ -12,7 +12,7 @@ import { FirestoreService } from 'src/app/servicios/firestore.service';
 })
 export class ActorAltaComponent implements OnInit {
 
-  actor:Actor = {id:0,nombre:'',apellido:'', pais:'', sexo:''};
+  actor:Actor = {id:'',nombre:'',apellido:'', pais:'', sexo:''};
   formGroup!:FormGroup;
 
   constructor(private fb:FormBuilder, private firestore:FirestoreService, private router:Router, private afs:AngularFirestore) { }
@@ -41,21 +41,11 @@ export class ActorAltaComponent implements OnInit {
     this.actor.apellido = this.formGroup.controls.apellido.value;
     this.actor.pais = this.formGroup.controls.pais.value;
     this.actor.sexo = this.formGroup.controls.sexo.value;
+    this.actor.id = this.afs.createId();
 
-
-    this.afs.collection<Actor>('actores', ref => ref.orderBy('id', 'desc').limit(1)).snapshotChanges().subscribe(snapshot => {
-
-      let ultimoId:number;
-      ultimoId = snapshot[0].payload.doc.data().id;
-      this.actor.id = ultimoId;
-
-    });
-
-    setTimeout(()=>{
-      this.actor.id = this.actor.id+1;
-      this.firestore.crear('actores', this.actor);
+    this.firestore.actualizar('actores', this.actor.id, this.actor).then(()=>{
       this.router.navigate(['/busqueda']);
-    }, 1200);
+    });
   }
 
   volver(){

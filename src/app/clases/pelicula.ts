@@ -1,9 +1,9 @@
 export interface Pelicula{
-    id:number;
+    id:string;
     nombre:string;
     tipo:string;
     fechaEstreno:any;
     cantPublico:number;
     foto:string;
-    actor?:number;
+    actor?:string;
 }

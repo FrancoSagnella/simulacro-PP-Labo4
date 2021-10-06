@@ -22,7 +22,7 @@
           </div>
           <div class="col-md-6 mb-3">
             <label for="dni" class="form-label">Pais</label>
-            <input type="tex" class="form-control" formControlName="pais" placeholder="Ingrese edad">
+            <input readonly type="tex" class="form-control" formControlName="pais" placeholder="Ingrese edad">
             <small *ngIf="formGroup.controls.pais.errors?.required  && formGroup.controls.pais.touched" class="invalid">El pais es requerido</small>
           </div>
           <div class="col-md-6 mb-3">
